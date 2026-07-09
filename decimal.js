@@ -936,7 +936,8 @@
     Ctor.precision = pr + 6;
     Ctor.rounding = 1;
 
-    x = x.div(new Ctor(1).minus(x.times(x)).sqrt().plus(1)).atan();
+    // See https://github.com/MikeMcl/decimal.js/issues/249
+    x = x.div(new Ctor(1).minus(x).times(new Ctor(1).plus(x)).sqrt().plus(1)).atan();
 
     Ctor.precision = pr;
     Ctor.rounding = rm;
